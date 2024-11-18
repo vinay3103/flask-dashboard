@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Healthcare Dashboard</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label>
+                Name:
+                <input type="text" name="name" required />
+            </label>
+
+            <label>
+                Age:
+                <select name="age" required>
+                    <option value="">Select Age</option>
+                    {% for i in range(1, 101) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <label>
+                File Upload:
+                <input type="file" name="file" required />
+            </label>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if submitted_data %}
+        <div class="submitted-data">
+            <h2>Submitted Data</h2>
+            <p>Name: {{ submitted_data.name }}</p>
+            <p>Age: {{ submitted_data.age }}</p>
+            <p>File Name: {{ submitted_data.file }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
